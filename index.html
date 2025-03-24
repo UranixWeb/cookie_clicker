@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Cookie clicker alá co dům dal...</h1>
+    <h1>Cookie clicker 0.1</h1>
     <button id="výdělek" class="výdělek">Klikni, a dostaneš peníze!</button>
     <p></p>
     <strong><div id="penize">Peníze: 0</div></strong>
@@ -76,11 +76,11 @@
         }, 1000);
 
         setInterval(function(){if(penize >= advancement){
+            alert("Gratuluji, dosáhl jsi skóre " + advancement + " a získal jsi zdvojnásobení všeho výdělku!");
             advancement *= 10;
             výdělek *= 2;
             upgrade *= 2;
             vyplata *= 2;
-            alert("Gratuluji, dosáhl jsi skóre " + advancement + " a získal jsi zdvojnásobení všeho výdělku!");
         }}, 100)
         
     </script>
