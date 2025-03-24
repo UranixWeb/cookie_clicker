@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Cookie clicker alá co dům dal...</h1>
+    <button id="výdělek" class="výdělek">Klikni, a dostaneš peníze!</button>
+    <p></p>
+    <strong><div id="penize">Peníze: 0</div></strong>
+    <p></p>
+    <button id="upgrade">Koupit upgrade za 20</button>
+    <div id="upgradeInfo">Nynější výdělek je 1</div>
+    <p></p>
+    <button id="vyplata">Koupit pasivní příjem za 50</button>
+    <div id="vyplataInfo">Nynější pasivní příjem je 0</div>
+
+    <script>
+        let penize = 0;
+        let cena = 20;
+        let výdělek = 1;
+        let upgrade = 1;
+        let vyplata = 0;
+        let counter = 0;
+        let pasivniCena = (counter + 1) * 50;
+        let aktivniCena = výdělek * 20;
+        let advancement = 100;
+
+        const button = document.getElementById("výdělek");
+        const outputDiv = document.getElementById("penize");
+        const upgradeButton = document.getElementById("upgrade");
+        const vyplataButton = document.getElementById("vyplata");
+        const upgradeInfo = document.getElementById("upgradeInfo");
+        const vyplataInfo = document.getElementById("vyplataInfo");
+
+        outputDiv.textContent = "Peníze: " + penize;
+
+        button.addEventListener("click", function(){
+            penize += výdělek;
+            outputDiv.textContent = "Peníze: " + penize;
+            console.log("Button clicked, penize: " + penize);
+        });
+
+        upgradeButton.addEventListener("click", function(){
+            if(penize >= aktivniCena){
+                penize -= aktivniCena;
+                výdělek += upgrade;
+                aktivniCena = výdělek * 20;
+                outputDiv.textContent = "Peníze: " + penize;
+                upgradeInfo.textContent = "Nynější výdělek je " + výdělek;
+                upgradeButton.textContent = "Koupit upgrade za " + aktivniCena;
+                console.log("Upgrade purchased, penize: " + penize, "výdělek: " + výdělek, "cena: " + aktivniCena);
+            }
+        });
+
+        vyplataButton.addEventListener("click", function(){
+            if(penize >= pasivniCena){
+                penize -= pasivniCena;
+                vyplata += 1;
+                counter++;
+                pasivniCena = (counter + 1) * 50;
+                outputDiv.textContent = "Peníze: " + penize;
+                vyplataInfo.textContent = "Nynější pasivní příjem je " + vyplata;
+                vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
+                console.log("Passive income purchased, penize: " + penize, "vyplata: " + vyplata, "pasivniCena: " + pasivniCena);
+            }
+        });
+
+        setInterval(function(){
+            penize += vyplata;
+            outputDiv.textContent = "Peníze: " + penize;
+            console.log("AFK salary added, penize: " + penize);
+        }, 1000);
+
+        setInterval(function(){if(penize >= advancement){
+            advancement *= 10;
+            výdělek *= 2;
+            upgrade *= 2;
+            vyplata *= 2;
+            alert("Gratuluji, dosáhl jsi skóre " + advancement + " a získal jsi zdvojnásobení všeho výdělku!");
+        }}, 100)
+        
+    </script>
+</body>
+</html>
