@@ -73,14 +73,16 @@
             penize += vyplata;
             outputDiv.textContent = "Peníze: " + penize;
             console.log("AFK salary added, penize: " + penize);
-        }, 1000);
-
+        }, 1000)
+    
+    
         setInterval(function(){if(penize >= advancement){
-            alert("Gratuluji, dosáhl jsi skóre " + advancement + " a získal jsi zdvojnásobení všeho výdělku!");
-            advancement *= 10;
-            výdělek *= 2;
-            upgrade *= 2;
-            vyplata *= 2;
+        alert("Gratuluji, dosáhl jsi skóre " + advancement + " a získal jsi zdvojnásobení všeho výdělku!");
+        advancement *= 10;
+        výdělek+=2;
+        vyplata++;
+        upgradeInfo.textContent = "Nynější výdělek je " + výdělek;
+        vyplataInfo.textContent = "Nynější pasivní příjem je " + vyplata;
         }}, 100)
         
     </script>
