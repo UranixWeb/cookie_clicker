@@ -74,11 +74,11 @@
             }
         });
 
-        rebirth addEventListener("click", function(){
+        rebirth.addEventListener("click", function(){
             if(penize >= 100000)
-            penize == 0
-            výdělek == 1
-            vyplata == 0
+            penize = 0
+            výdělek = 1
+            vyplata = 0
             r++;
             outputDiv.textContent = "Peníze: " + penize;
             upgradeInfo.textContent = "Nynější příjem je " + ((výdělek + av) * r);
@@ -91,7 +91,7 @@
             penize += ((vyplata + ap) * r);
             outputDiv.textContent = "Peníze: " + penize;
             console.log("AFK salary added, penize: " + penize);
-        }, 1000 /= r)
+        }, 1000)
     
     
         setInterval(function(){if(penize >= advancement){
