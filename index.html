@@ -17,8 +17,12 @@
     <p></p>
     <button id="vyplata">Koupit pasivní příjem za 50</button>
     <div id="vyplataInfo">Nynější pasivní příjem je 0</div>
+    <p></p>
+    <button id="rebirth">Koupit rebirth za 100 000</button>
+    <p>Nynější multiplace je 1</p>
 
     <script>
+        let r = 1
         let penize = 0;
         let cena = 20;
         let výdělek = 1;
@@ -28,7 +32,8 @@
         let pasivniCena = (counter + 1) * 50;
         let aktivniCena = výdělek * 20;
         let advancement = 100;
-        let rebirth = 1
+        let av = 0;
+        let ap = 0;
 
         const button = document.getElementById("výdělek");
         const outputDiv = document.getElementById("penize");
@@ -36,11 +41,10 @@
         const vyplataButton = document.getElementById("vyplata");
         const upgradeInfo = document.getElementById("upgradeInfo");
         const vyplataInfo = document.getElementById("vyplataInfo");
-
-        outputDiv.textContent = "Peníze: " + penize;
+        const rebirth = document.getElementById("rebirth")
 
         button.addEventListener("click", function(){
-            penize += výdělek;
+            penize += ((výdělek + av) * r);
             outputDiv.textContent = "Peníze: " + penize;
             console.log("Button clicked, penize: " + penize);
         });
@@ -51,7 +55,7 @@
                 výdělek += upgrade;
                 aktivniCena = výdělek * 20;
                 outputDiv.textContent = "Peníze: " + penize;
-                upgradeInfo.textContent = "Nynější výdělek je " + výdělek;
+                upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
                 upgradeButton.textContent = "Koupit upgrade za " + aktivniCena;
                 console.log("Upgrade purchased, penize: " + penize, "výdělek: " + výdělek, "cena: " + aktivniCena);
             }
@@ -64,26 +68,39 @@
                 counter++;
                 pasivniCena = (counter + 1) * 50;
                 outputDiv.textContent = "Peníze: " + penize;
-                vyplataInfo.textContent = "Nynější pasivní příjem je " + vyplata;
+                vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
                 vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
                 console.log("Passive income purchased, penize: " + penize, "vyplata: " + vyplata, "pasivniCena: " + pasivniCena);
             }
         });
 
+        rebirth addEventListener("click", function(){
+            if(penize >= 100000)
+            penize == 0
+            výdělek == 1
+            vyplata == 0
+            r++;
+            outputDiv.textContent = "Peníze: " + penize;
+            upgradeInfo.textContent = "Nynější příjem je " + ((výdělek + av) * r);
+            vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
+            upgradeButton.textContent = "Koupit upgrade za " + cena
+            vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
+        })
+
         setInterval(function(){
-            penize += vyplata;
+            penize += ((vyplata + ap) * r);
             outputDiv.textContent = "Peníze: " + penize;
             console.log("AFK salary added, penize: " + penize);
-        }, 1000)
+        }, 1000 /= r)
     
     
         setInterval(function(){if(penize >= advancement){
         alert("Gratuluji, dosáhl jsi skóre " + advancement + " a získal jsi zdvojnásobení všeho výdělku!");
         advancement *= 10;
-        výdělek+=2;
-        vyplata++;
-        upgradeInfo.textContent = "Nynější výdělek je " + výdělek;
-        vyplataInfo.textContent = "Nynější pasivní příjem je " + vyplata;
+        ap += 5;
+        av += 10;
+        upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
+        vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) *r);
         }}, 100)
         
     </script>
