@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Cookie clicker 0.1</h1>
-    <button id="výdělek" class="výdělek">Klikni, a dostaneš peníze!</button>
+    <img src="button.jpg" id="výdělek" height="10rem" width="10rem">
     <p></p>
     <strong><div id="penize">Peníze: 0</div></strong>
     <p></p>
@@ -77,17 +77,20 @@
         });
 
         rebirth.addEventListener("click", function(){
-            if(penize >= 100000)
-            penize = 0
-            výdělek = 1
-            vyplata = 0
-            r++;
-            outputDiv.textContent = "Peníze: " + penize;
-            upgradeInfo.textContent = "Nynější příjem je " + ((výdělek + av) * r);
-            vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
-            upgradeButton.textContent = "Koupit upgrade za " + cena
-            vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
-        })
+            if(penize >= 100000) {
+                penize = 0
+                výdělek = 1
+                vyplata = 0
+                r++;
+                cena = 20;
+                pasivniCena = 50;
+                outputDiv.textContent = "Peníze: " + penize;
+                upgradeInfo.textContent = "Nynější příjem je " + ((výdělek + av) * r);
+                vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
+                upgradeButton.textContent = "Koupit upgrade za " + cena
+                vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
+            }
+        });
 
         setInterval(function(){
             penize += ((vyplata + ap) * r);
@@ -99,12 +102,12 @@
         setInterval(function(){if(penize >= advancement){
         alert("Gratuluji, dosáhl jsi skóre " + advancement + " a získal jsi zdvojnásobení všeho výdělku!");
         advancement *= 10;
-        ap *= 2;
-        av *= 2;
+        ap = vyplata;
+        av = výdělek;
         upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
         vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) *r);
-        }}, 100)
-        
+        }}, 500)
+
     </script>
 </body>
 </html>
