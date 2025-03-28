@@ -76,37 +76,43 @@
             }
         });
 
-        rebirth.addEventListener("click", function(){
-            if(penize >= 1000) {
-                penize = 0
-                výdělek = 1
-                vyplata = 0
+        rebirth.addEventListener("click", function () {
+            if (penize >= 100000) { 
+                penize = 0;
+                výdělek = 1;
+                vyplata = 0;
                 r++;
                 cena = 20;
                 pasivniCena = 50;
                 outputDiv.textContent = "Peníze: " + penize;
                 upgradeInfo.textContent = "Nynější příjem je " + ((výdělek + av) * r);
                 vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
-                upgradeButton.textContent = "Koupit upgrade za " + cena
+                upgradeButton.textContent = "Koupit upgrade za " + cena;
                 vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
+                console.log("Rebirth performed, multiplier: " + r);
+                advancement = 100; 
+                ap = 0; 
+                av = 0; 
             }
         });
 
-        setInterval(function(){
+        setInterval(function () {
             penize += ((vyplata + ap) * r);
             outputDiv.textContent = "Peníze: " + penize;
-            console.log("AFK salary added, penize: " + penize);
-        }, 1000)
-    
-    
-        setInterval(function(){if(penize >= advancement){
-        alert("Gratuluji, dosáhl jsi skóre " + advancement + " a získal jsi zdvojnásobení všeho výdělku!");
-        advancement *= 10;
-        ap = vyplata;
-        av = výdělek;
-        upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
-        vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) *r);
-        }}, 500)
+            console.log("AFK salary added, penize: " + penize, "vyplata: " + vyplata, "ap: " + ap, "r: " + r);
+        }, 1000);
+
+        setInterval(function () {
+            if (penize >= advancement) {
+                alert("Gratuluji, dosáhl jsi skóre " + advancement + " a získal jsi zdvojnásobení všeho výdělku!");
+                advancement *= 10;
+                ap = vyplata;
+                av = výdělek;
+                upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
+                vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
+                console.log("Advancement achieved, new target: " + advancement);
+            }
+        }, 1000); 
 
     </script>
 </body>
