@@ -8,7 +8,9 @@
 </head>
 <body>
     <h1>Cookie clicker 0.1</h1>
-    <img src="button.jpg" id="výdělek" height="200px" width="200px">
+    <div style="position: relative; display: inline-block;">
+        <img src="button.jpg" id="výdělek" height="200px" width="200px">
+    </div>
     <p></p>
     <strong><div id="penize">Peníze: 0</div></strong>
     <p></p>
@@ -45,10 +47,37 @@
         const vyplataInfo = document.getElementById("vyplataInfo");
         const rebirth = document.getElementById("rebirth")
 
-        button.addEventListener("click", function(){
+        button.addEventListener("click", function () {
+            // Add the 'clicked' class to trigger the animation
+            button.classList.add("clicked");
+
+            // Remove the 'clicked' class after the animation ends
+            setTimeout(() => {
+                button.classList.remove("clicked");
+            }, 100); // Match the duration of the CSS transition
+
+            // Existing logic for adding money
             penize += ((výdělek + av) * r);
             outputDiv.textContent = "Peníze: " + penize;
             console.log("Button clicked, penize: " + penize);
+
+            // Create the floating text
+            const floatingText = document.createElement("div");
+            floatingText.textContent = "+1"; // Adjust the value as needed
+            floatingText.className = "floating-text";
+
+            // Position the floating text near the button
+            const rect = button.getBoundingClientRect();
+            floatingText.style.left = `${rect.width / 2}px`;
+            floatingText.style.top = `${rect.height / 2}px`;
+
+            // Append the floating text to the button's parent container
+            button.parentElement.appendChild(floatingText);
+
+            // Remove the floating text after the animation ends
+            setTimeout(() => {
+                floatingText.remove();
+            }, 1000); // Match the duration of the animation
         });
 
         upgradeButton.addEventListener("click", function(){
