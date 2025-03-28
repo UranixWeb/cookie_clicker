@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .floating-text {
+            position: absolute;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            animation: floatUp 1s ease-out forwards;
+            pointer-events: none; /* Prevent interaction */
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Cookie clicker 0.1</h1>
@@ -48,39 +69,30 @@
         const rebirth = document.getElementById("rebirth")
 
         button.addEventListener("click", function () {
-            // Calculate the money earned per click
             const moneyEarned = (výdělek + av) * r;
 
-            // Add the 'clicked' class to trigger the animation
             button.classList.add("clicked");
-
-            // Remove the 'clicked' class after the animation ends
             setTimeout(() => {
                 button.classList.remove("clicked");
-            }, 100); // Match the duration of the CSS transition
+            }, 100);
 
-            // Update the total money
             penize += moneyEarned;
             outputDiv.textContent = "Peníze: " + penize;
-            console.log("Button clicked, penize: " + penize);
 
-            // Create the floating text
             const floatingText = document.createElement("div");
-            floatingText.textContent = `+${moneyEarned}`; // Display the actual money earned
+            floatingText.textContent = `+${moneyEarned}`;
             floatingText.className = "floating-text";
 
-            // Position the floating text near the button
             const rect = button.getBoundingClientRect();
-            floatingText.style.left = `${rect.width / 2}px`;
-            floatingText.style.top = `${rect.height / 2}px`;
+            floatingText.style.position = "absolute";
+            floatingText.style.left = `${rect.left + rect.width / 2}px`;
+            floatingText.style.top = `${rect.top}px`;
 
-            // Append the floating text to the button's parent container
-            button.parentElement.appendChild(floatingText);
+            document.body.appendChild(floatingText);
 
-            // Remove the floating text after the animation ends
             setTimeout(() => {
                 floatingText.remove();
-            }, 1000); // Match the duration of the animation
+            }, 1000);
         });
 
         upgradeButton.addEventListener("click", function(){
