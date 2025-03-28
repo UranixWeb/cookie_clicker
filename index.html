@@ -48,6 +48,9 @@
         const rebirth = document.getElementById("rebirth")
 
         button.addEventListener("click", function () {
+            // Calculate the money earned per click
+            const moneyEarned = (výdělek + av) * r;
+
             // Add the 'clicked' class to trigger the animation
             button.classList.add("clicked");
 
@@ -56,14 +59,14 @@
                 button.classList.remove("clicked");
             }, 100); // Match the duration of the CSS transition
 
-            // Existing logic for adding money
-            penize += ((výdělek + av) * r);
+            // Update the total money
+            penize += moneyEarned;
             outputDiv.textContent = "Peníze: " + penize;
             console.log("Button clicked, penize: " + penize);
 
             // Create the floating text
             const floatingText = document.createElement("div");
-            floatingText.textContent = "+1"; // Adjust the value as needed
+            floatingText.textContent = `+${moneyEarned}`; // Display the actual money earned
             floatingText.className = "floating-text";
 
             // Position the floating text near the button
