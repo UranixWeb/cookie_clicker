@@ -222,8 +222,11 @@
             upgradeButton.textContent = "Koupit upgrade za " + aktivniCena;
             vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
 
+            // Ensure only one multiplier display is updated
             const multiplierDisplay = document.querySelector("p:nth-of-type(4)");
-            multiplierDisplay.textContent = "Nynější multiplace je " + r;
+            if (multiplierDisplay) {
+                multiplierDisplay.textContent = "Nynější multiplace je " + r;
+            }
 
             console.log("Progress loaded:", {
                 penize, výdělek, vyplata, r, upgrade, counter, aktivniCena, pasivniCena, av, ap, v, p, cena, advancement
