@@ -1,4 +1,3 @@
-
 let r = 1
 let penize = 0;
 let cena = 20;
@@ -69,7 +68,7 @@ vyplataButton.addEventListener("click", function(){
         penize -= pasivniCena;
         vyplata += 1;
         counter++;
-        pasivniCena = (counter + 1) * 50;
+        pasivniCena += 50;
         outputDiv.textContent = "Peníze: " + penize;
         vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
         vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
@@ -109,7 +108,7 @@ setInterval(function () {
 }, 1000);
 
 setInterval(function () {
-    if (penize >= advancement) {
+    if (penize >= advancement && selectedDifficulty !== "hard") {
         console.log("Advancement achieved, new target: " + advancement);
         alert("Gratulujeme, dosáhli jste pokroku! Váš výdělek by zdvojnásoben! Nový cíl je " + advancement);
         advancement *= 10
@@ -174,4 +173,49 @@ load.addEventListener("click", function() {
     console.log("Progress loaded:", {
         penize, výdělek, vyplata, r, upgrade, counter, aktivniCena, pasivniCena, av, ap, v, p, cena, advancement
     });
+});
+document.getElementById("diffcoultyInfo").addEventListener("click", function () {
+    const modal = document.getElementById("difficultyModal");
+    modal.style.display = "flex";
+});
+
+document.getElementById("closeModal").addEventListener("click", function () {
+    const modal = document.getElementById("difficultyModal");
+    modal.style.display = "none";
+});
+
+document.querySelectorAll(".difficulty-option").forEach(button => {
+    button.addEventListener("click", function () {
+        const selectedDifficulty = this.getAttribute("data-difficulty");
+        const difficultyDiv = document.getElementById("diffcoultyInfo");
+        difficultyDiv.textContent = "Nynější obtížnost je " + selectedDifficulty;
+
+        if (selectedDifficulty === "easy") {
+            r = 2; // Double the multiplier for easy mode
+            aktivniCena = Math.floor(aktivniCena * 0.5); // Reduce upgrade costs by 50%
+            pasivniCena = Math.floor(pasivniCena * 0.5); // Reduce passive income costs by 50%
+        } else if (selectedDifficulty === "normal") {
+            r = 1; // Reset multiplier for normal mode
+            aktivniCena = výdělek * 20; // Reset upgrade costs
+            pasivniCena = (counter + 1) * 50; // Reset passive income costs
+        } else if (selectedDifficulty === "hard") {
+            r = 1; // Keep multiplier at default
+            aktivniCena = Math.ceil(aktivniCena * 1.5); // Increase upgrade costs by 50%
+            pasivniCena = Math.ceil(pasivniCena * 1.5); // Increase passive income costs by 50%
+        }
+
+        // Update UI elements
+        upgradeButton.textContent = "Koupit upgrade za " + aktivniCena;
+        vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
+        rebirthInfo.textContent = "Nynější multiplace je " + r;
+
+        // Close the modal
+        const modal = document.getElementById("difficultyModal");
+        modal.style.display = "none";
+    });
+});
+
+document.getElementById("diffcoulty").addEventListener("click", function () {
+    const modal = document.getElementById("difficultyModal");
+    modal.style.display = "flex";
 });
