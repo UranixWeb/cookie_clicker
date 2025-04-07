@@ -89,14 +89,12 @@ rebirth.addEventListener("click", function () {
         ap = 0; 
         av = 0; 
 
-        // Update UI elements
         outputDiv.textContent = "Peníze: " + penize;
         upgradeInfo.textContent = "Nynější příjem je " + ((výdělek + av) * r);
         vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
         upgradeButton.textContent = "Koupit upgrade za " + cena;
         vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
 
-        // Update multiplier display
         const multiplierDisplay = document.querySelector("p:nth-of-type(4)");
         multiplierDisplay.textContent = "Nynější multiplace je " + r;
 
@@ -124,7 +122,7 @@ setInterval(function () {
 
 save.addEventListener("click", function() {
     const expirationDate = new Date();
-    expirationDate.setFullYear(expirationDate.getFullYear() + 1); // Set expiration to 1 year from now
+    expirationDate.setFullYear(expirationDate.getFullYear() + 1); 
 
     document.cookie = "penize=" + encodeURIComponent(penize) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "výdělek=" + encodeURIComponent(výdělek) + "; path=/; expires=" + expirationDate.toUTCString();
@@ -150,7 +148,6 @@ load.addEventListener("click", function() {
         return null;
     }
 
-    // Load values from cookies
     penize = parseInt(getCookie("penize")) || 0;
     výdělek = parseInt(getCookie("výdělek")) || 1;
     vyplata = parseInt(getCookie("vyplata")) || 0;
@@ -166,7 +163,6 @@ load.addEventListener("click", function() {
     cena = parseInt(getCookie("cena")) || 20;
     advancement = parseInt(getCookie("advancement")) || 100;
 
-    // Update UI elements
     outputDiv.textContent = "Peníze: " + penize;
     upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
     vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
