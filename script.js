@@ -23,6 +23,8 @@ const rebirth = document.getElementById("rebirth");
 const save = document.getElementById("save");
 const load = document.getElementById("load");
 const rebirthInfo = document.getElementById("rebirthInfo");
+const investment = document.getElementById("investment");
+const investice = document.getElementById("investice");
 
 button.addEventListener("click", function () {
     const moneyEarned = (výdělek + av) * r;
@@ -108,7 +110,7 @@ setInterval(function () {
 }, 1000);
 
 setInterval(function () {
-    if (penize >= advancement && selectedDifficulty !== "hard") {
+    if (penize >= advancement) {
         console.log("Advancement achieved, new target: " + advancement);
         alert("Gratulujeme, dosáhli jste pokroku! Váš výdělek by zdvojnásoben! Nový cíl je " + advancement);
         advancement *= 10
@@ -118,6 +120,32 @@ setInterval(function () {
         vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
     }
 }, 1000); 
+
+investment.addEventListener("click", function () {
+    const investmentValue = parseInt(investice.value) || 0;
+
+    if (penize >= investmentValue && investmentValue > 0) {
+        penize -= investmentValue;
+        outputDiv.textContent = "Peníze: " + penize;
+        console.log("Investment made, waiting for cashback...");
+
+        const multiplier = Math.random() * (1.5 - 0.5) + 0.5; 
+        const cashback = Math.floor(investmentValue * multiplier);
+
+        setTimeout(() => {
+            penize += cashback;
+            outputDiv.textContent = "Peníze: " + penize;
+            console.log(`Cashback received: ${cashback}, Total money: ${penize}`);
+            if (multiplier > 1) {
+                alert(`Gratulujeme, získali jste ${cashback} a vydělali jste!`);
+            } if (multiplier < 1) {
+                alert(`Bohužel, získali jste pouze ${cashback} zpět.`);
+            }
+        }, cashback * 10); 
+    } else {
+        console.log("Not enough money to invest or invalid investment value.");
+    }
+});
 
 save.addEventListener("click", function() {
     const expirationDate = new Date();
