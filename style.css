@@ -76,30 +76,41 @@ h1 {
 }
 
 .cooker {
-    margin-left: 220px; /* Add space for aside1 */
-    margin-right: 220px; /* Add space for aside2 */
+    margin-left: 220px;
+    margin-right: 220px;
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 2rem;
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+    color: white;
 }
 
 .aside1 {
     position: absolute;
     top: 0;
-    left: 0; /* Position it on the left side */
-    height: 100%; /* Make it span the full height of the screen */
-    width: 200px; /* Set a fixed width */
+    left: 0; 
+    height: 100%;
+    width: 200px;
     background-color: rgba(0, 0, 0, 0.5);
     border: #007bff solid 2px;
     padding: 20px;
-    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    box-sizing: border-box; 
 }
 
 .aside2 {
     position: absolute;
     top: 0;
-    right: 0; /* Position it on the right side */
-    height: 100%; /* Make it span the full height of the screen */
-    width: 200px; /* Set a fixed width */
+    right: 0;
+    height: 100%;
+    width: 200px;
     background-color: rgba(0, 0, 0, 0.5);
     border: #007bff solid 2px;
     padding: 20px;
-    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    box-sizing: border-box;
 }
