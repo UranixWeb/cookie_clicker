@@ -1,3 +1,9 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 main {
     display: flex;
     justify-content: center;
@@ -69,26 +75,31 @@ h1 {
     }
 }
 
+.cooker {
+    margin-left: 220px; /* Add space for aside1 */
+    margin-right: 220px; /* Add space for aside2 */
+}
+
 .aside1 {
     position: absolute;
     top: 0;
-    left: 0;
-    height: 100%;
-    width: 200px;
+    left: 0; /* Position it on the left side */
+    height: 100%; /* Make it span the full height of the screen */
+    width: 200px; /* Set a fixed width */
     background-color: rgba(0, 0, 0, 0.5);
     border: #007bff solid 2px;
     padding: 20px;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
 .aside2 {
     position: absolute;
     top: 0;
-    right: 0;
-    height: 100%;
-    width: 200px;
+    right: 0; /* Position it on the right side */
+    height: 100%; /* Make it span the full height of the screen */
+    width: 200px; /* Set a fixed width */
     background-color: rgba(0, 0, 0, 0.5);
     border: #007bff solid 2px;
     padding: 20px;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
