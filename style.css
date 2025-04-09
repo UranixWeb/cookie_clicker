@@ -3,6 +3,7 @@ main {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 5rem;
 }
 
 body {
@@ -66,4 +67,18 @@ h1 {
         opacity: 0;
         transform: translateY(-50px);
     }
+}
+
+.aside1 {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: #007bff solid 2px;
+    padding: 20px;
+}
+
+.aside2 {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: #007bff solid 2px;
+    padding: 20px;
 }

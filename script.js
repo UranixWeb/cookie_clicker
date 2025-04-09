@@ -109,18 +109,6 @@ setInterval(function () {
     console.log("AFK salary added, penize: " + penize, "vyplata: " + vyplata, "ap: " + ap, "r: " + r);
 }, 1000);
 
-setInterval(function () {
-    if (penize >= advancement) {
-        console.log("Advancement achieved, new target: " + advancement);
-        alert("Gratulujeme, dosáhli jste pokroku! Váš výdělek by zdvojnásoben! Nový cíl je " + advancement);
-        advancement *= 10
-        av = (výdělek + av);
-        ap = (vyplata + ap);
-        upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
-        vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
-    }
-}, 1000); 
-
 investment.addEventListener("click", function () {
     const investmentValue = parseInt(investice.value) || 0;
 
@@ -202,3 +190,47 @@ load.addEventListener("click", function() {
         penize, výdělek, vyplata, r, upgrade, counter, aktivniCena, pasivniCena, av, ap, v, p, cena, advancement
     });
 });
+
+setInterval(function (a1) {
+    if(penize >= 100 && a1 == 0){
+        alert("Gratulujeme, získali jste 100 peněz! Získali jste 3 upgrady zdarma!");
+        výdělek += 3;
+        a1 = 1;
+    }
+}, 1000);
+
+setInterval(function (a2) {
+    if(penize >= 1000 && a2 == 0){
+        alert("Gratulujeme, získali jste 1000 peněz! Získali jste 5 upgrade a 3 pasivní zdarma!");
+        výdělek += 5;
+        vyplata += 3;
+        a2 = 1;
+    }
+}, 1000);
+
+setInterval(function (a3) {
+    if(penize >= 10000 && a3 == 0){
+        alert("Gratulujeme, získali jste 10000 peněz! Získali jste 10 upgrade a 6 pasivní zdarma!");
+        výdělek += 10;
+        vyplata += 6;
+        a3 = 1;
+    }
+}, 1000);
+
+setInterval(function (a4) {
+    if(penize >= 100000 && a4 == 0){
+        alert("Gratulujeme, získali jste 100000 peněz! Získali jste 20 upgrade a 12 pasivní zdarma!");
+        výdělek += 20;
+        vyplata += 12;
+        a4 = 1;
+    }
+}, 1000);
+
+setInterval(function (a5) {
+    if(penize >= 1000000 && a5 == 0){
+        alert("Gratulujeme, získali jste 1000000 peněz! Získali jste 50 upgrade a 30 pasivní zdarma!");
+        výdělek += 50;
+        vyplata += 30;
+        a5 = 1;
+    }
+}, 1000);
