@@ -71,14 +71,24 @@ h1 {
 
 .aside1 {
     position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
     background-color: rgba(0, 0, 0, 0.5);
     border: #007bff solid 2px;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .aside2 {
     position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 200px;
     background-color: rgba(0, 0, 0, 0.5);
     border: #007bff solid 2px;
     padding: 20px;
+    box-sizing: border-box;
 }
