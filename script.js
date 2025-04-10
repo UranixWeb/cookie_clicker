@@ -25,6 +25,16 @@ const load = document.getElementById("load");
 const rebirthInfo = document.getElementById("rebirthInfo");
 const investment = document.getElementById("investment");
 const investice = document.getElementById("investice");
+const o1 = document.getElementById("o1");
+const o2 = document.getElementById("o2");
+const o3 = document.getElementById("o3");
+const o4 = document.getElementById("o4");
+const o5 = document.getElementById("o5");
+const a1 = 0;
+const a2 = 0;
+const a3 = 0;
+const a4 = 0;
+const a5 = 0;
 
 button.addEventListener("click", function () {
     const moneyEarned = (výdělek + av) * r;
@@ -153,6 +163,11 @@ save.addEventListener("click", function() {
     document.cookie = "p=" + encodeURIComponent(p) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "cena=" + encodeURIComponent(cena) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "advancement=" + encodeURIComponent(advancement) + "; path=/; expires=" + expirationDate.toUTCString();
+    document.cookie = "a5=" + encodeURIComponent(advancement) + "; path=/; expires=" + expirationDate.toUTCString();
+    document.cookie = "a4=" + encodeURIComponent(advancement) + "; path=/; expires=" + expirationDate.toUTCString();
+    document.cookie = "a3=" + encodeURIComponent(advancement) + "; path=/; expires=" + expirationDate.toUTCString();
+    document.cookie = "a2=" + encodeURIComponent(advancement) + "; path=/; expires=" + expirationDate.toUTCString();
+    document.cookie = "a1=" + encodeURIComponent(advancement) + "; path=/; expires=" + expirationDate.toUTCString();
 });
 
 load.addEventListener("click", function() {
@@ -177,6 +192,11 @@ load.addEventListener("click", function() {
     p = parseInt(getCookie("p")) || 0;
     cena = parseInt(getCookie("cena")) || 20;
     advancement = parseInt(getCookie("advancement")) || 100;
+    a1 = parseInt(getCookie("a1")) || 0;
+    a2 = parseInt(getCookie("a2")) || 0;
+    a3 = parseInt(getCookie("a3")) || 0;
+    a4 = parseInt(getCookie("a4")) || 0;
+    a5 = parseInt(getCookie("a5")) || 0;
 
     outputDiv.textContent = "Peníze: " + penize;
     upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
@@ -232,5 +252,45 @@ setInterval(function (a5) {
         výdělek += 50;
         vyplata += 30;
         a5 = 1;
+    }
+}, 1000);
+
+setInterval(function (p1) {
+    if(a1 === 1){
+        o1.style.display = "block";
+    } else{
+        o1.style.display = "none";
+    }
+}, 1000);
+
+setInterval(function (p2) {
+    if(a2 === 1){
+        o2.style.display = "block";
+    } else{
+        o2.style.display = "none";
+    }
+}, 1000);
+
+setInterval(function (p3) {
+    if(a3 === 1){
+        o3.style.display = "block";
+    } else{
+        o3.style.display = "none";
+    }
+}, 1000);
+
+setInterval(function (p4) {
+    if(a4 === 1){
+        o4.style.display = "block";
+    } else{
+        o4.style.display = "none";
+    }
+}, 1000);
+
+setInterval(function (p5) {
+    if(a5 === 1){
+        o5.style.display = "block";
+    } else{
+        o5.style.display = "none";
     }
 }, 1000);
