@@ -101,7 +101,6 @@ rebirth.addEventListener("click", function () {
         r++;
         cena = 20;
         pasivniCena = 50;
-        advancement = 100; 
         ap = 0; 
         av = 0; 
 
@@ -185,6 +184,11 @@ load.addEventListener("click", function() {
     }
 
     // Load all game variables from cookies
+    a1 = parseInt(getCookie("a1")) || 0;
+    a2 = parseInt(getCookie("a2")) || 0;
+    a3 = parseInt(getCookie("a3")) || 0;
+    a4 = parseInt(getCookie("a4")) || 0;
+    a5 = parseInt(getCookie("a5")) || 0;
     penize = parseInt(getCookie("penize")) || 0;
     výdělek = parseInt(getCookie("výdělek")) || 1;
     vyplata = parseInt(getCookie("vyplata")) || 0;
@@ -199,11 +203,6 @@ load.addEventListener("click", function() {
     p = parseInt(getCookie("p")) || 0;
     cena = parseInt(getCookie("cena")) || 20;
     advancement = parseInt(getCookie("advancement")) || 100;
-    a1 = parseInt(getCookie("a1")) || 0;
-    a2 = parseInt(getCookie("a2")) || 0;
-    a3 = parseInt(getCookie("a3")) || 0;
-    a4 = parseInt(getCookie("a4")) || 0;
-    a5 = parseInt(getCookie("a5")) || 0;
 
     // Update the UI with loaded values
     outputDiv.textContent = "Peníze: " + penize;
@@ -219,29 +218,34 @@ load.addEventListener("click", function() {
 });
 
 setInterval(function () {
-    if (penize >= 100 && achievement1.style.display === "none") {
+    if (penize >= 100 && achievement1.style.display === "none" && a1 === 0) {
+        a1 = 1;
         achievement1.style.display = "block";
         alert("Achievement dosažen: 100 peněz!");
         console.log("Achievement unlocked: 100 penize!");
     }
-    if (penize >= 1000 && achievement2.style.display === "none") {
+    if (penize >= 1000 && achievement2.style.display === "none" && a2 === 0) {
+        a2 = 1;
         achievement2.style.display = "block";
-        alert("Achievement dosažen: 100 peněz!");
+        alert("Achievement dosažen: 1 000 peněz!");
         console.log("Achievement unlocked: 1000 penize!");
     }
-    if (penize >= 10000 && achievement3.style.display === "none") {
+    if (penize >= 10000 && achievement3.style.display === "none" && a3 === 0) {
+        a3 = 1;
         achievement3.style.display = "block";
-        alert("Achievement dosažen: 100 peněz!");
+        alert("Achievement dosažen: 10 000 peněz!");
         console.log("Achievement unlocked: 10000 penize!");
     }
-    if (penize >= 100000 && achievement4.style.display === "none") {
+    if (penize >= 100000 && achievement4.style.display === "none" && a4 === 0) {
+        a4 = 1;
         achievement4.style.display = "block";
-        alert("Achievement dosažen: 100 peněz!");
+        alert("Achievement dosažen: 100 000 peněz!");
         console.log("Achievement unlocked: 100000 penize!");
     }
-    if (penize >= 1000000 && achievement5.style.display === "none") {
+    if (penize >= 1000000 && achievement5.style.display === "none" && a5 === 0) {
+        a5 = 1;
         achievement5.style.display = "block";
-        alert("Achievement dosažen: 100 peněz!");
+        alert("Achievement dosažen: 1 000 000 peněz!");
         console.log("Achievement unlocked: 1000000 penize!");
     }
 }, 1000);
