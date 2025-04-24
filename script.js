@@ -12,6 +12,8 @@ let av = 0;
 let ap = 0;
 let v = 0;
 let p = 0;
+let invSpeed = 10;
+let invCost = 1000
 
 const button = document.getElementById("výdělek");
 const outputDiv = document.getElementById("penize");
@@ -25,6 +27,8 @@ const load = document.getElementById("load");
 const rebirthInfo = document.getElementById("rebirthInfo");
 const investment = document.getElementById("investment");
 const investice = document.getElementById("investice");
+const investmentSpeed = document.getElementById("investmentSpeed")
+const investiceInfo = document.getElementById("investmentSpeedInfo")
 const o1 = document.getElementById("o1");
 const o2 = document.getElementById("o2");
 const o3 = document.getElementById("o3");
@@ -40,6 +44,16 @@ const achievement2 = document.getElementById("achievement2");
 const achievement3 = document.getElementById("achievement3");
 const achievement4 = document.getElementById("achievement4");
 const achievement5 = document.getElementById("achievement5");
+
+investmentSpeed.addEventListener("click", function () {
+    if(penize >= invCost){
+        penize -= invCost;
+        invCost *= 5;
+        invSpeed *=5;
+        investmentSpeed.textContent = "Zrychlit investice za " + invCost;
+        investiceInfo.textContent = "Rychlost investice je " + invSpeed;
+    }
+})
 
 button.addEventListener("click", function () {
     const moneyEarned = (výdělek + av) * r;
