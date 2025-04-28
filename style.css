@@ -80,24 +80,27 @@ h1 {
     color: white;
 }
 
-/* Style for the achievement container */
 #achievement1, #achievement2, #achievement3, #achievement4, #achievement5 {
-    position: relative; /* Make the container a positioning context */
-    display: inline-block; /* Ensure the image and text are grouped together */
-    width: 200px; /* Match the image width */
-    height: 200px; /* Match the image height */
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
 }
 
-/* Style for the achievement text */
 .achievement-text {
-    position: absolute; /* Position the text relative to the container */
-    top: 50%; /* Center the text vertically */
-    left: 50%; /* Center the text horizontally */
-    transform: translate(-50%, -50%); /* Adjust for perfect centering */
-    color: white; /* Text color */
-    font-size: 1.2rem; /* Adjust font size */
-    font-weight: bold; /* Make the text bold */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow for better visibility */
-    pointer-events: none; /* Ensure the text doesn't interfere with clicks */
-    text-align: center; /* Center-align the text */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    text-align: center;
+}
+
+.nefacha {
+    background-color: red;
+    color: darkred;
 }
