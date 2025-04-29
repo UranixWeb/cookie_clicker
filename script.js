@@ -44,6 +44,9 @@ const achievement2 = document.getElementById("achievement2");
 const achievement3 = document.getElementById("achievement3");
 const achievement4 = document.getElementById("achievement4");
 const achievement5 = document.getElementById("achievement5");
+const gambleInfo = document.getElementById("gambleInfo");
+const gambleModal = document.getElementById("gambleModal");
+const closeModal = document.getElementById("closeModal");
 
 investmentSpeed.addEventListener("click", function () {
     if(penize >= invCost){
@@ -165,9 +168,7 @@ investment.addEventListener("click", function () {
 
 save.addEventListener("click", function() {
     const expirationDate = new Date();
-    expirationDate.setFullYear(expirationDate.getFullYear() + 1); // Set cookie expiration to 1 year from now
-
-    // Save all game variables into cookies
+    expirationDate.setFullYear(expirationDate.getFullYear() + 1);
     document.cookie = "penize=" + encodeURIComponent(penize) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "výdělek=" + encodeURIComponent(výdělek) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "vyplata=" + encodeURIComponent(vyplata) + "; path=/; expires=" + expirationDate.toUTCString();
@@ -187,6 +188,8 @@ save.addEventListener("click", function() {
     document.cookie = "a3=" + encodeURIComponent(a3) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "a4=" + encodeURIComponent(a4) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "a5=" + encodeURIComponent(a5) + "; path=/; expires=" + expirationDate.toUTCString();
+    document.cookie = "invSpeed=" + encodeURIComponent(invSpeed) + "; path=/; expires=" + expirationDate.toUTCString();
+    document.cookie = "invCost=" + encodeURIComponent(invCost) + "; path=/; expires=" + expirationDate.toUTCString();
 });
 
 load.addEventListener("click", function() {
@@ -196,8 +199,6 @@ load.addEventListener("click", function() {
         if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
         return null;
     }
-
-    // Load all game variables from cookies
     a1 = parseInt(getCookie("a1")) || 0;
     a2 = parseInt(getCookie("a2")) || 0;
     a3 = parseInt(getCookie("a3")) || 0;
@@ -217,49 +218,39 @@ load.addEventListener("click", function() {
     p = parseInt(getCookie("p")) || 0;
     cena = parseInt(getCookie("cena")) || 20;
     advancement = parseInt(getCookie("advancement")) || 100;
-
-    // Update the UI with loaded values
+    invSpeed = parseInt(getCookie("invSpeed")) || 10;
+    invCost = parseInt(getCookie("invCost")) || 1000;
     outputDiv.textContent = "Peníze: " + penize;
     upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
     vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
     upgradeButton.textContent = "Koupit upgrade za " + aktivniCena;
     vyplataButton.textContent = "Koupit pasivní příjem za " + pasivniCena;
     rebirthInfo.textContent = "Nynější multiplace je " + r;
-
-    console.log("Progress loaded:", {
-        penize, výdělek, vyplata, r, upgrade, counter, aktivniCena, pasivniCena, av, ap, v, p, cena, advancement
-    });
+    investmentSpeed.textContent = "Zrychlit investice za " + invCost;
+    investiceInfo.textContent = "Rychlost investice je " + invSpeed;
 });
 
-setInterval(function () {
-    if (penize >= 100 && achievement1.style.display === "none" && a1 === 0) {
-        a1 = 1;
-        achievement1.style.display = "block";
-        alert("Achievement dosažen: 100 peněz!");
-        console.log("Achievement unlocked: 100 penize!");
+investmentSpeed.addEventListener("click", function () {
+    if (penize >= invCost) {
+        penize -= invCost;
+        invCost *= 5;
+        invSpeed *= 5;
+        investmentSpeed.textContent = "Zrychlit investice za " + invCost;
+        investiceInfo.textContent = "Rychlost investice je " + invSpeed;
+        outputDiv.textContent = "Peníze: " + penize;
     }
-    if (penize >= 1000 && achievement2.style.display === "none" && a2 === 0) {
-        a2 = 1;
-        achievement2.style.display = "block";
-        alert("Achievement dosažen: 1 000 peněz!");
-        console.log("Achievement unlocked: 1000 penize!");
+});
+
+gambleInfo.addEventListener("click", function () {
+    gambleModal.style.display = "flex";
+});
+
+closeModal.addEventListener("click", function () {
+    gambleModal.style.display = "none";
+});
+
+window.addEventListener("click", function (event) {
+    if (event.target === gambleModal) {
+        gambleModal.style.display = "none";
     }
-    if (penize >= 10000 && achievement3.style.display === "none" && a3 === 0) {
-        a3 = 1;
-        achievement3.style.display = "block";
-        alert("Achievement dosažen: 10 000 peněz!");
-        console.log("Achievement unlocked: 10000 penize!");
-    }
-    if (penize >= 100000 && achievement4.style.display === "none" && a4 === 0) {
-        a4 = 1;
-        achievement4.style.display = "block";
-        alert("Achievement dosažen: 100 000 peněz!");
-        console.log("Achievement unlocked: 100000 penize!");
-    }
-    if (penize >= 1000000 && achievement5.style.display === "none" && a5 === 0) {
-        a5 = 1;
-        achievement5.style.display = "block";
-        alert("Achievement dosažen: 1 000 000 peněz!");
-        console.log("Achievement unlocked: 1000000 penize!");
-    }
-}, 1000);
+});
