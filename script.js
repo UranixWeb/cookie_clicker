@@ -183,11 +183,6 @@ save.addEventListener("click", function() {
     document.cookie = "p=" + encodeURIComponent(p) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "cena=" + encodeURIComponent(cena) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "advancement=" + encodeURIComponent(advancement) + "; path=/; expires=" + expirationDate.toUTCString();
-    document.cookie = "a1=" + encodeURIComponent(a1) + "; path=/; expires=" + expirationDate.toUTCString();
-    document.cookie = "a2=" + encodeURIComponent(a2) + "; path=/; expires=" + expirationDate.toUTCString();
-    document.cookie = "a3=" + encodeURIComponent(a3) + "; path=/; expires=" + expirationDate.toUTCString();
-    document.cookie = "a4=" + encodeURIComponent(a4) + "; path=/; expires=" + expirationDate.toUTCString();
-    document.cookie = "a5=" + encodeURIComponent(a5) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "invSpeed=" + encodeURIComponent(invSpeed) + "; path=/; expires=" + expirationDate.toUTCString();
     document.cookie = "invCost=" + encodeURIComponent(invCost) + "; path=/; expires=" + expirationDate.toUTCString();
 });
@@ -199,11 +194,7 @@ load.addEventListener("click", function() {
         if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
         return null;
     }
-    a1 = parseInt(getCookie("a1")) || 0;
-    a2 = parseInt(getCookie("a2")) || 0;
-    a3 = parseInt(getCookie("a3")) || 0;
-    a4 = parseInt(getCookie("a4")) || 0;
-    a5 = parseInt(getCookie("a5")) || 0;
+
     penize = parseInt(getCookie("penize")) || 0;
     výdělek = parseInt(getCookie("výdělek")) || 1;
     vyplata = parseInt(getCookie("vyplata")) || 0;
@@ -220,6 +211,7 @@ load.addEventListener("click", function() {
     advancement = parseInt(getCookie("advancement")) || 100;
     invSpeed = parseInt(getCookie("invSpeed")) || 10;
     invCost = parseInt(getCookie("invCost")) || 1000;
+
     outputDiv.textContent = "Peníze: " + penize;
     upgradeInfo.textContent = "Nynější výdělek je " + ((výdělek + av) * r);
     vyplataInfo.textContent = "Nynější pasivní příjem je " + ((vyplata + ap) * r);
